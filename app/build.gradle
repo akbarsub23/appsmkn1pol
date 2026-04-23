@@ -1,0 +1,71 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'id.sch.smkn1gempol.exambro'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "id.sch.smkn1gempol.exambro"
+        minSdk 24
+        targetSdk 34
+        versionCode 5
+        versionName "5.0.0"
+    }
+
+    buildTypes {
+        debug {
+            // Debug tetap kecil
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // Hanya include bahasa Indonesia + Inggris — buang resource bahasa lain
+    defaultConfig {
+        applicationId "id.sch.smkn1gempol.exambro"
+        minSdk 24
+        targetSdk 34
+        versionCode 5
+        versionName "5.0.0"
+        resourceConfigurations += ['in', 'en']
+    }
+
+    buildFeatures { viewBinding true }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions { jvmTarget = '1.8' }
+
+    // Buang resource yang tidak terpakai
+    packagingOptions {
+        resources {
+            excludes += [
+                'META-INF/DEPENDENCIES',
+                'META-INF/LICENSE',
+                'META-INF/NOTICE',
+                '**/*.kotlin_module'
+            ]
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.activity:activity-ktx:1.8.2'
+    implementation 'androidx.browser:browser:1.7.0'
+}
